@@ -4,18 +4,16 @@ ruby '2.0.0'
 
 gem 'rails', '4.0.2'
 
-# Use postgresql as the database for Active Record
-# gem 'pg'
+# Use postgresql as the database for Active Record non regquired because of pg in production
+# gem 'pg' 
 
 # For design added after
 #gem 'bootstrap-sass', '~> 2.0.2'
 gem 'bootstrap-sass', '2.3.2.0'
 
-=begin
-group :development do
-  gem 'sqlite3', '1.3.8'
-end
-=end
+# for error environment is nil
+gem 'sprockets', '2.11.0'
+
 
 gem 'sass-rails', '4.0.1'
 gem 'uglifier', '2.1.1'
