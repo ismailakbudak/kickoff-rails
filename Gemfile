@@ -7,12 +7,15 @@ gem 'rails', '4.0.2'
 # Use postgresql as the database for Active Record non regquired because of pg in production
 # gem 'pg' 
 
-# For design added after
+# Uİ design 
 #gem 'bootstrap-sass', '~> 2.0.2'
 gem 'bootstrap-sass', '2.3.2.0'
 
-# for error environment is nil
+#  environment nil hatası için 
 gem 'sprockets', '2.11.0'
+
+# şifre için
+gem 'bcrypt-ruby', '3.1.2'
 
 
 gem 'sass-rails', '4.0.1'
