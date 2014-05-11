@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-	
+	# dependent: :destroy means to be destroyed when the user itself is destroyed
+	has_many :microposts, dependent: :destroy
+
 	# some databases does not  support case_sensitive
 	before_save { self.email = email.downcase }
     
@@ -23,6 +25,10 @@ class User < ActiveRecord::Base
 	def User.digest(token)
 	  Digest::SHA1.hexdigest(token.to_s)
 	end
+    
+    def feed
+      microposts
+    end
 
 	private
 
