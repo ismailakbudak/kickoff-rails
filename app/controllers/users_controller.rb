@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # profil güncelleme işlemi için kullanıcının giriş yapmaıs gerekir
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
 
   # profil güncelleme için giriş yapan kullanıcının aynı olması gerekir
   before_action :correct_user,   only: [:edit, :update]
@@ -52,6 +52,20 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.followed_users.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+  
   # Private methods are here
   private
   
