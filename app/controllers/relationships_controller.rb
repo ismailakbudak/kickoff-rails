@@ -1,6 +1,23 @@
 class RelationshipsController < ApplicationController
   before_action :signed_in_user
 
+# Sayfa yeniden yüklenmez AJAX ile işlme yapılır  
+# En alttaki ile aynı görevi yapar
+
+  respond_to :html, :js
+  def create
+    @user = User.find(params[:relationship][:followed_id])
+    current_user.follow!(@user)
+    respond_with @user
+  end
+
+  def destroy
+    @user = Relationship.find(params[:id]).followed
+    current_user.unfollow!(@user)
+    respond_with @user
+  end
+
+# Sayfa yeniden yüklenir  
 =begin
   def create
     @user = User.find(params[:relationship][:followed_id])
@@ -16,6 +33,8 @@ class RelationshipsController < ApplicationController
 
 =end
 
+# Sayfa yeniden yüklenmez AJAX ile işlme yapılır  
+=begin
   def create
     @user = User.find(params[:relationship][:followed_id])
     current_user.follow!(@user)
@@ -33,6 +52,7 @@ class RelationshipsController < ApplicationController
       format.js
     end
   end
+=end  
 
   # Private methods are here
   private
